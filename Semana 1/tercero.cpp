@@ -23,7 +23,7 @@ int main(){
 
     }
 
-    cout << "positivos: " << sum_pos << ", negativos: " << sum_neg;
+    cout << "positivos " << sum_pos << ", negativos " << sum_neg;
     
     return 0;
 }
