@@ -58,7 +58,18 @@ public:
         preOrderRecursively(root, result);
         return result;
     }
+
+    Node* getRoot(){
+        return root;
+    }
 };
+
+
+int contarRamas(Node* root) {
+    if (!root) return 0;
+    if (!root->left && !root->right) return 1;
+    return contarRamas(root->left) + contarRamas(root->right);
+}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -67,22 +78,21 @@ int main() {
     int casos;
     cin >> casos;
     cin.ignore();
+
     for(int i = 0; i < casos; i++) {
         string line;
         getline(cin, line);
-        vector<int> numeros = split(line,' ');
+        vector<int> numeros = split(line, ' ');
+
+
+
         BinarySearchTree bst;
-        for(int j = 0; j < numeros.size() - 1; j++){
-            bst.insert(numeros[j]);
-        }
-        vector<int> preorder = bst.preOrder();
-
-        for(int n:preorder){
-            cout << n;
+        for(int num = 0; num < numeros.size()-1;num++) {
+            bst.insert(numeros[num]);
         }
 
-        cout << endl;
+        Node* root = bst.getRoot();
+        cout << contarRamas(root) << "\n";
     }
-
     return 0;
 }

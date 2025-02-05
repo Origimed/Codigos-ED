@@ -58,9 +58,25 @@ public:
         preOrderRecursively(root, result);
         return result;
     }
+
+    Node* getRoot(){
+        return root;
+    }
 };
 
+
+int altura(Node* root){
+    if (!root) return 0;
+    int alturaIzq = altura(root->left);
+    int alturaDer = altura(root->right);
+    return 1 + max(alturaIzq,alturaDer);
+}
+
 int main() {
+
+
+
+    
     ios::sync_with_stdio(false);
     cin.tie(0);
 
@@ -75,13 +91,9 @@ int main() {
         for(int j = 0; j < numeros.size() - 1; j++){
             bst.insert(numeros[j]);
         }
-        vector<int> preorder = bst.preOrder();
-
-        for(int n:preorder){
-            cout << n;
-        }
-
-        cout << endl;
+        Node* root = bst.getRoot();
+        int altura1 = altura(root);
+        cout << altura1 << endl;
     }
 
     return 0;

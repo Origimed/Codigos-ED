@@ -58,7 +58,32 @@ public:
         preOrderRecursively(root, result);
         return result;
     }
+
+    Node* getRoot(){
+        return root;
+    }
 };
+
+int altura(Node* root){
+    if (!root) return 0;
+    int alturaIzq = altura(root->left);
+    int alturaDer = altura(root->right);
+    return 1 + max(alturaIzq,alturaDer);
+}
+
+int contarNodos(Node* root) {
+    if (!root) return 0;
+    return 1 + contarNodos(root->left) + contarNodos(root->right);
+}
+
+bool completo(Node* root) {
+    int h = altura(root);
+    int n = contarNodos(root);
+    // arbol completo si #nodos == 2^h - 1
+    return (n == ( (1 << h) - 1 ));
+}
+
+
 
 int main() {
     ios::sync_with_stdio(false);
@@ -67,22 +92,22 @@ int main() {
     int casos;
     cin >> casos;
     cin.ignore();
+
     for(int i = 0; i < casos; i++) {
         string line;
         getline(cin, line);
-        vector<int> numeros = split(line,' ');
+        vector<int> numeros = split(line, ' ');
+
         BinarySearchTree bst;
-        for(int j = 0; j < numeros.size() - 1; j++){
+        for(int j = 0; j < numeros.size()-1; j++){
             bst.insert(numeros[j]);
         }
-        vector<int> preorder = bst.preOrder();
 
-        for(int n:preorder){
-            cout << n;
+        if(completo(bst.getRoot())) {
+            cout << "completo\n";
+        } else {
+            cout << "no\n";
         }
-
-        cout << endl;
     }
-
     return 0;
 }

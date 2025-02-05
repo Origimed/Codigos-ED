@@ -21,10 +21,12 @@ vector<int> split(string str, char delimiter) {
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
+
     int numArray; 
     cin >> numArray;
     cin.ignore();
     vector<int> listaNums;
+    
     for(int i = 0; i < numArray; i++){
         string entrada;
         getline(cin, entrada);

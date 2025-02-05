@@ -58,7 +58,21 @@ public:
         preOrderRecursively(root, result);
         return result;
     }
+
+    Node* getRoot(){
+        return root;
+    }
 };
+
+
+
+int contarHijosUnico(Node* root) {
+    if (!root) return 0;
+    int leftCount = contarHijosUnico(root->left);
+    int rightCount = contarHijosUnico(root->right);
+    bool singleChild = (root->left && !root->right) || (!root->left && root->right);
+    return (singleChild ? 1 : 0) + leftCount + rightCount;
+}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -70,19 +84,13 @@ int main() {
     for(int i = 0; i < casos; i++) {
         string line;
         getline(cin, line);
-        vector<int> numeros = split(line,' ');
+        vector<int> numeros = split(line, ' ');
+
         BinarySearchTree bst;
-        for(int j = 0; j < numeros.size() - 1; j++){
+        for(size_t j = 0; j < numeros.size()-1; j++){
             bst.insert(numeros[j]);
         }
-        vector<int> preorder = bst.preOrder();
-
-        for(int n:preorder){
-            cout << n;
-        }
-
-        cout << endl;
+        cout << contarHijosUnico(bst.getRoot()) << "\n";
     }
-
     return 0;
 }
