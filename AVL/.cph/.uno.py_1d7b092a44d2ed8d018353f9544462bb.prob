@@ -1,1 +1,0 @@
-{"name":"Local: uno","url":"/home/ptro/Code/un/Estructura de datos/Codigos-ED/AVL/uno.py","tests":[{"id":1738797360508,"input":"3\nB C A #\nD4 C3 B2 A1 #\n5X 2X 7X 6X 3X 1X 8X #\n","output":"ACB\nA1B2D4C3\n1X3X2X6X8X7X5X"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/ptro/Code/un/Estructura de datos/Codigos-ED/AVL/uno.py","group":"local","local":true}
